@@ -14,6 +14,7 @@ Route::get('dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/tareas',[TareasController::class, 'index'])->name('tareas.index');
+    Route::get('/tareas/create',[TareasController::class, 'create'])->name('tareas.create');
 });
 
 require __DIR__.'/settings.php';

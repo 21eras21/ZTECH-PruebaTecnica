@@ -10,4 +10,8 @@ class TareasController extends Controller
     public function index(){
         return Inertia::render('tareas/Index',[]);
     }
+
+    public function create(){
+        return Inertia::render('tareas/Create',[]);
+    }
 }

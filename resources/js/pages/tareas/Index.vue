@@ -5,6 +5,7 @@ import { type BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Check } from 'lucide-vue-next';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow, } from '@/components/ui/table'
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -32,6 +33,39 @@ const page = usePage()
             </div>
             
             <Link :href="route('tareas.create')"><Button>Crear tarea</Button></Link>
+
+            <div>
+                <Table>
+                    <TableCaption>Listado de las tareas.</TableCaption>
+                    <TableHeader>
+                    <TableRow>
+                        <TableHead class="w-[100px]">
+                        ID
+                        </TableHead>
+                        <TableHead>Título</TableHead>
+                        <TableHead>Descripción</TableHead>
+                        <TableHead>Fecha Límite</TableHead>
+                        <TableHead>Estado</TableHead>
+                        <TableHead>Usuario Asignado</TableHead>
+                        <TableHead class="text-right">
+                        Amount
+                        </TableHead>
+                    </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                    <TableRow>
+                        <TableCell class="font-medium">
+                        INV001
+                        </TableCell>
+                        <TableCell>Paid</TableCell>
+                        <TableCell>Credit Card</TableCell>
+                        <TableCell class="text-right">
+                        $250.00
+                        </TableCell>
+                    </TableRow>
+                    </TableBody>
+                </Table>
+            </div>
         </div>
     </AppLayout>
 </template>

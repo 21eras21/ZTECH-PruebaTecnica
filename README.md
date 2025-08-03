@@ -16,8 +16,10 @@ Composer
 Node.js 18.x o superior
 
 Docker & Docker Compose (opcional pero recomendado)
+NO CONFIGURADO EN EL PROYECTO
 
 SQL Server (si no usas Docker)
+NO CONFIGURADO EN EL PROYECTO
 
 ⚙️ Instalación del proyecto
 

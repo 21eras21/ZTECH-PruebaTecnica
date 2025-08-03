@@ -18,6 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('/tareas',[TareasController::class, 'store'])->name('tareas.store');
     Route::get('/tareas/{tarea}/edit',[TareasController::class, 'edit'])->name('tareas.edit');
     Route::put('/tareas/{tarea}',[TareasController::class, 'update'])->name('tareas.update');
+    Route::delete('/tareas/{tarea}',[TareasController::class, 'destroy'])->name('tareas.destroy');
 });
 
 require __DIR__.'/settings.php';

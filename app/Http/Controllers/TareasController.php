@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tareas;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -23,5 +24,9 @@ class TareasController extends Controller
             'estado' => 'required|string',
             'usuario' => 'required|string',
         ]);
+
+        Tareas::create($data);
+
+        return redirect() -> route('tareas.index') -> with('message', 'Tarea añadida correctamente');
     }
 }

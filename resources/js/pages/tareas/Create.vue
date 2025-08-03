@@ -49,10 +49,7 @@ const handleSubmit = () => {
                 </div>
                 <div class="space-y-2">
                     <Label for="Fecha límite de la tarea">Fecha límite</Label>
-                    <Input v-model="form.fechalimite" type="text" placeholder="AAAA-MM-DD"/>
-                    <!--La idea principal es colocar un Calendar para que se pueda seleccionar la fecha-->
-                    <!--No está quedando bien, por lo que se borró y se colocará un Input normal en su lugar por el momento-->
-                    <!--<input v-model="form.fechalimite" type="date" id="fecha" name="fecha-limite" value="00-00-0000" min="2025-01-01" max="2030-12-31"/>-->
+                    <Input v-model="form.fechalimite" type="date"/>
                     <div class="text-sm text-red-600" v-if="form.errors.fechalimite">({ form.errors.fechalimite })</div>
 
                 </div>

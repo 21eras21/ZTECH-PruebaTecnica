@@ -18,15 +18,15 @@ class TareasController extends Controller
 
     public function store(Request $request){
         $data = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descripcion' => 'required|string|max:255',
-            'fecha' => 'required|date',
-            'estado' => 'required|string',
-            'usuario' => 'required|string',
+            'titulo' => 'required|string',
+            'descripcion' => 'required|string',
+            'fechalimite' => 'required|string',
+            'estado' => 'string',
+            'usuarioasignado' => 'required|string',
         ]);
+        dd($data);
+        //Tareas::create($data);
 
-        Tareas::create($data);
-
-        return redirect() -> route('tareas.index') -> with('message', 'Tarea añadida correctamente');
+        //return redirect() -> route('tareas.index') -> with('message', 'Tarea añadida correctamente');
     }
 }

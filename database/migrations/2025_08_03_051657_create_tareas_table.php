@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descripcion');
-            $table->date('fecha');
+            $table->string('fechalimite');
             $table->string('estado');
-            $table->string('usuario');
+            $table->string('usuarioasignado');
             $table->timestamps();
         });
     }

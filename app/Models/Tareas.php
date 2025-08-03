@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tareas extends Model
 {
-    protected $fillable = ['titutlo', 'descripcion', 'fecha', 'estado', 'usuario'];
+    protected $fillable = [
+    'titulo',
+    'descripcion',
+    'fechalimite',
+    'estado',
+    'usuarioasignado',
+];
 }

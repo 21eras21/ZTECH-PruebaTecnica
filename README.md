@@ -41,6 +41,7 @@ npm run build
 cp .env.example .env
 
 Luego edita el archivo .env para establecer la conexión con tu base de datos (SQL Server) y otros ajustes necesarios.
+IMPORTANTE: DEBE SER EJECUTADO LOCALMENTE CON sqlite, YA QUE SQL Server NO QUEDÓ COMPLETAMENTE CONFIGURADO.
 
 5. Generar clave de aplicación
 
@@ -51,6 +52,7 @@ php artisan key:generate
 php artisan migrate
 
 🐳 Uso con Docker (opcional pero recomendado)
+IMPORTANTE: ESTO NO QUEDÓ COMPLETAMENTE CONFIGURADO, DEBE SER EJECUTADO LOCALMENTE.
 
 Levantar los servicios:
 
@@ -59,10 +61,6 @@ docker compose up -d
 Ejecutar las migraciones desde el contenedor:
 
 docker compose exec app php artisan migrate
-
-🧪 Datos de prueba
-
-Puedes utilizar el script SQL proporcionado para poblar la base de datos con datos iniciales.
 
 📁 Estructura del proyecto
 

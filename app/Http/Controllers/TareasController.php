@@ -24,9 +24,8 @@ class TareasController extends Controller
             'estado' => 'string',
             'usuarioasignado' => 'required|string',
         ]);
-        dd($data);
-        //Tareas::create($data);
-
-        //return redirect() -> route('tareas.index') -> with('message', 'Tarea añadida correctamente');
+        //dd($data);
+        Tareas::create($data);
+        return redirect() -> route('tareas.index') -> with('message', 'Tarea añadida correctamente');
     }
 }

@@ -7,6 +7,22 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Check } from 'lucide-vue-next';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow, } from '@/components/ui/table'
 
+interface Tarea {
+    id: number,
+    titulo: string,
+    descripcion: string,
+    fechalimite: Date,
+    estado: string,
+    usuarioasignado: string,
+}
+
+interface Props{
+    tareas: Tarea[];
+}
+
+//Traer props de Inertia
+const props=defineProps<Props>();
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Tareas',
@@ -47,22 +63,23 @@ const page = usePage()
                         <TableHead>Fecha Límite</TableHead>
                         <TableHead>Estado</TableHead>
                         <TableHead>Usuario Asignado</TableHead>
-                        <TableHead class="text-right">
-                        Amount
+                        <TableHead class="text-center">
+                        Acción
                         </TableHead>
                     </TableRow>
                     </TableHeader>
                     <TableBody>
-                    <TableRow>
-                        <TableCell class="font-medium">
-                        INV001
-                        </TableCell>
-                        <TableCell>Paid</TableCell>
-                        <TableCell>Credit Card</TableCell>
-                        <TableCell class="text-right">
-                        $250.00
-                        </TableCell>
-                    </TableRow>
+                        <TableRow v-for="tarea in props.tareas" :key="tarea.id">
+                            <TableCell>{{ tarea.id }}</TableCell>
+                            <TableCell class="font-medium">{{ tarea.titulo }}</TableCell>
+                            <TableCell>{{ tarea.descripcion }}</TableCell>
+                            <TableCell>{{ tarea.fechalimite }}</TableCell>
+                            <TableCell>{{ tarea.estado }}</TableCell>
+                            <TableCell>{{ tarea.usuarioasignado }}</TableCell>
+                            <TableCell class="text-center">
+                                <Link :href="route('tareas.edit', {id: tarea.id})"><Button class="bg-gray-300">Editar</Button></Link>
+                            </TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
             </div>

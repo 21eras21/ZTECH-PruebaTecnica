@@ -9,7 +9,8 @@ use Inertia\Inertia;
 class TareasController extends Controller
 {
     public function index(){
-        return Inertia::render('tareas/Index',[]);
+        $tareas = Tareas::latest()->get();
+        return Inertia::render('tareas/Index', compact('tareas'));
     }
 
     public function create(){
@@ -24,8 +25,12 @@ class TareasController extends Controller
             'estado' => 'string',
             'usuarioasignado' => 'required|string',
         ]);
-        //dd($data);
+        //dd($data); //Esto se usó para validar error con los datos que se estaban enviando.
         Tareas::create($data);
         return redirect() -> route('tareas.index') -> with('message', 'Tarea añadida correctamente');
+    }
+
+    public function edit(Tareas $tarea){
+        return Inertia::render('tareas/Edit', compact('tarea'));
     }
 }

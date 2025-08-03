@@ -2,7 +2,7 @@
 import Button from '@/components/ui/button/Button.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, usePage } from '@inertiajs/vue3';
+import { Head, Link, usePage, router } from '@inertiajs/vue3';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Check } from 'lucide-vue-next';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow, } from '@/components/ui/table'
@@ -31,6 +31,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const page = usePage()
+
+const handleDelete = (id: number) =>{
+    if(confirm('¿Desea eliminar esta tarea?')){
+        router.delete(route('tareas.destroy', {id}));
+    }
+}
 </script>
 
 <template>
@@ -76,8 +82,9 @@ const page = usePage()
                             <TableCell>{{ tarea.fechalimite }}</TableCell>
                             <TableCell>{{ tarea.estado }}</TableCell>
                             <TableCell>{{ tarea.usuarioasignado }}</TableCell>
-                            <TableCell class="text-center">
-                                <Link :href="route('tareas.edit', {id: tarea.id})"><Button class="bg-gray-300">Editar</Button></Link>
+                            <TableCell class="text-center space-x-2">
+                                <Link :href="route('tareas.edit', {id: tarea.id})"><Button class="bg-blue-500">Editar</Button></Link>
+                                <Button class="bg-red-500" @Click="handleDelete(tarea.id)">Eliminar</Button>
                             </TableCell>
                         </TableRow>
                     </TableBody>

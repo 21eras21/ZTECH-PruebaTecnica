@@ -17,6 +17,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/tareas/create',[TareasController::class, 'create'])->name('tareas.create');
     Route::post('/tareas',[TareasController::class, 'store'])->name('tareas.store');
     Route::get('/tareas/{tarea}/edit',[TareasController::class, 'edit'])->name('tareas.edit');
+    Route::put('/tareas/{tarea}',[TareasController::class, 'update'])->name('tareas.update');
 });
 
 require __DIR__.'/settings.php';

@@ -8,14 +8,9 @@ import { Head, useForm } from '@inertiajs/vue3';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue, } from '@/components/ui/select'
 import { handleError } from 'vue';
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Editar tarea',
-        href: '',
-    },
-];
 
 interface Tarea{
+    id: number,
     titulo: string,
     descripcion: string,
     fechalimite: Date,
@@ -34,7 +29,7 @@ const form = useForm({
 })
 
 const handleSubmit = () => {
-    form.post(route('tareas.store'));
+    form.put(route('tareas.update', {tarea: props.tarea}));
 }
 
 </script>
@@ -42,7 +37,7 @@ const handleSubmit = () => {
 <template>
     <Head title="Editar tarea" />
 
-    <AppLayout :breadcrumbs="breadcrumbs">
+    <AppLayout :breadcrumbs="[{ title: 'Editar tarea', href: `/tareas/${props.tarea.id}/edit`}]">
         <div class="p-4">
             <!-- Sección donde están los inputs para crear una tarea -->
             <form @submit.prevent="handleSubmit" class="w-8/12 space-y-4">

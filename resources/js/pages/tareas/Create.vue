@@ -35,6 +35,7 @@ const handleSubmit = () => {
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="p-4">
             <!-- Sección donde están los inputs para crear una tarea -->
+            <h1 class="text-2xl font-bold mb-6">Crear tarea</h1>
             <form @submit.prevent="handleSubmit" class="w-8/12 space-y-4">
                 <div class="space-y-2">
                     <Label for="Título de la tarea">Título</Label>

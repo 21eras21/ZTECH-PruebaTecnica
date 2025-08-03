@@ -83,7 +83,7 @@ const handleSubmit = () => {
                     <Input v-model="form.usuarioasignado" type="text" placeholder="Usuario asignado de la tarea"/>
                     <div class="text-sm text-red-600" v-if="form.errors.usuarioasignado">({ form.errors.usuarioasignado })</div>
                 </div>
-                <Button type="submit">Crear tarea</Button>
+                <Button type="submit" :disabled="form.processing">Crear tarea</Button>
             </form>
         </div>
     </AppLayout>

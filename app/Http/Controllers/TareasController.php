@@ -14,4 +14,14 @@ class TareasController extends Controller
     public function create(){
         return Inertia::render('tareas/Create',[]);
     }
+
+    public function store(Request $request){
+        $data = $request->validate([
+            'titulo' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:255',
+            'fecha' => 'required|date',
+            'estado' => 'required|string',
+            'usuario' => 'required|string',
+        ]);
+    }
 }

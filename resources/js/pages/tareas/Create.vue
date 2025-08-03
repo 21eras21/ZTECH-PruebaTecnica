@@ -6,6 +6,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/vue3';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue, } from '@/components/ui/select'
+import { handleError } from 'vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -17,10 +18,14 @@ const breadcrumbs: BreadcrumbItem[] = [
 const form = useForm({
     titulo: '',
     descripcion: '',
-    fecha: '',
+    fechalimite: '',
     estado: '',
-    usuario: ''
+    usuarioasignado: ''
 })
+
+const handleSubmit = () => {
+    form.post(route('tareas.store'));
+}
 </script>
 
 <template>
@@ -29,7 +34,7 @@ const form = useForm({
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="p-4">
             <!-- Sección donde están los inputs para crear una tarea -->
-            <form class="w-8/12 space-y-4">
+            <form @submit.prevent="handleSubmit" class="w-8/12 space-y-4">
                 <div class="space-y-2">
                     <Label for="Título de la tarea">Título</Label>
                     <Input v-model="form.titulo" type="text" placeholder="Título de la tarea"/>
@@ -37,15 +42,18 @@ const form = useForm({
                 </div>
                 <div class="space-y-2">
                     <Label for="Descripción de la tarea">Descripción</Label>
-                    <Input type="text" placeholder="Descripción de la tarea"/>
+                    <Input v-model="form.descripcion" type="text" placeholder="Descripción de la tarea"/>
+                    <div class="text-sm text-red-600" v-if="form.errors.descripcion">({ form.errors.descripcion })</div>
                 </div>
                 <div class="space-y-2">
                     <Label for="Fecha límite de la tarea">Fecha límite</Label>
-                    <input type="date" id="fecha" name="fecha-limite" value="00-00-0000" min="2025-01-01" max="2030-12-31"/>
+                    <input v-model="form.fechalimite" type="date" id="fecha" name="fecha-limite" value="00-00-0000" min="2025-01-01" max="2030-12-31"/>
+                    <div class="text-sm text-red-600" v-if="form.errors.fechalimite">({ form.errors.fechalimite })</div>
+
                 </div>
                 <div class="space-y-2">
                     <Label for="Estado de la tarea">Estado</Label>
-                    <Select>
+                    <Select v-model="form.estado">
                         <SelectTrigger>
                             <SelectValue placeholder="Selecciona el estado de la tarea" />
                             </SelectTrigger>
@@ -63,11 +71,15 @@ const form = useForm({
                             </SelectGroup>
                             </SelectContent>
                     </Select>
+                    <div class="text-sm text-red-600" v-if="form.errors.estado">({ form.errors.estado })</div>
+
                 </div>
                 <div class="space-y-2">
                     <Label for="Usuario asignado de la tarea">Usuario</Label>
-                    <Input type="text" placeholder="Usuario asignado de la tarea"/>
+                    <Input v-model="form.usuarioasignado" type="text" placeholder="Usuario asignado de la tarea"/>
+                    <div class="text-sm text-red-600" v-if="form.errors.usuarioasignado">({ form.errors.usuarioasignado })</div>
                 </div>
+                <Button type="submit">Crear tarea</Button>
             </form>
         </div>
     </AppLayout>

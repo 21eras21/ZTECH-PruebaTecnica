@@ -15,6 +15,7 @@ Route::get('dashboard', function () {
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/tareas',[TareasController::class, 'index'])->name('tareas.index');
     Route::get('/tareas/create',[TareasController::class, 'create'])->name('tareas.create');
+    Route::post('/tareas',[TareasController::class, 'store'])->name('tareas.store');
 });
 
 require __DIR__.'/settings.php';
